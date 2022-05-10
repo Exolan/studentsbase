@@ -25,13 +25,44 @@
 }
 
 .form {
-  display: flex;
+  display: grid;
   height: 100%;
-  width: 100%;
+  width: max-content;
   justify-content: center;
+  padding-left: 40%;
 }
 
 .name_div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.surname_div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lastname_div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.year_div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.startyear_div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faculity_div {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -41,4 +72,21 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
+}
+
+/*                                      */
+.table_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 20px;
+}
+th,
+td {
+  padding: 10px 20px;
+  border: 1px solid #000;
 }
