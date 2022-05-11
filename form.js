@@ -8,10 +8,6 @@
   form.append(createFaculity());
   form.append(createButton());
 
-  // let year = "20040722";
-  // let aaaa = maskDate(year);
-  // console.log(aaaa);
-
   function createName() {
     const name_div = document.createElement("div");
     name_div.className = "name_div";
@@ -27,6 +23,9 @@
         check_div.style.backgroundColor = "transparent";
         status.textContent = "";
       } else if (checkRussian(input.value) == false && input.value != "") {
+        check_div.style.backgroundColor = "red";
+        status.textContent = "Введите русские буквы";
+      } else if (checkAlpha(input.value) == true) {
         check_div.style.backgroundColor = "red";
         status.textContent = "Введите русские буквы";
       } else if (checkRussian(input.value) == true) {
@@ -60,6 +59,9 @@
       } else if (checkRussian(input.value) == false && input.value != "") {
         check_div.style.backgroundColor = "red";
         status.textContent = "Введите русские буквы";
+      } else if (checkAlpha(input.value) == true) {
+        check_div.style.backgroundColor = "red";
+        status.textContent = "Введите русские буквы";
       } else if (checkRussian(input.value) == true) {
         check_div.style.backgroundColor = "green";
         status.textContent = "Все правильно";
@@ -91,6 +93,9 @@
       } else if (checkRussian(input.value) == false && input.value != "") {
         check_div.style.backgroundColor = "red";
         status.textContent = "Введите русские буквы";
+      } else if (checkAlpha(input.value) == true) {
+        check_div.style.backgroundColor = "red";
+        status.textContent = "Введите русские буквы";
       } else if (checkRussian(input.value) == true) {
         check_div.style.backgroundColor = "green";
         status.textContent = "Все правильно";
@@ -111,30 +116,31 @@
     const year_input = document.createElement("h2");
     year_input.textContent = "Дата рождения";
     const input = document.createElement("input");
+    input.setAttribute("type", "date");
     const check_div = document.createElement("div");
     check_div.className = "check";
     const status = document.createElement("p");
 
-    input.addEventListener("input", () => {
-      if (input.value === "") {
-        check_div.style.backgroundColor = "transparent";
-        status.textContent = "";
-      } else if (checkNum(input.value) == false && input.value != "") {
-        if (
-          input.value.length == 8 &&
-          checkYears(maskDate(input.value)) == true
-        ) {
-          check_div.style.backgroundColor = "green";
-          status.textContent = "Все правильно";
-        } else {
-          check_div.style.backgroundColor = "red";
-          status.textContent = "Неправильный формат даты";
-        }
-      } else if (checkNum(input.value) == true) {
-        check_div.style.backgroundColor = "red";
-        status.textContent = "Введите цифры";
-      }
-    });
+    // input.addEventListener("input", () => {
+    //   if (input.value === "") {
+    //     check_div.style.backgroundColor = "transparent";
+    //     status.textContent = "";
+    //   } else if (checkNum(input.value) == false && input.value != "") {
+    //     if (
+    //       input.value.length == 8 &&
+    //       checkYears(maskDate(input.value)) == true
+    //     ) {
+    //       check_div.style.backgroundColor = "green";
+    //       status.textContent = "Все правильно";
+    //     } else {
+    //       check_div.style.backgroundColor = "red";
+    //       status.textContent = "Неправильный формат даты";
+    //     }
+    //   } else if (checkNum(input.value) == true) {
+    //     check_div.style.backgroundColor = "red";
+    //     status.textContent = "Введите цифры";
+    //   }
+    // });
 
     year_div.append(year_input);
     year_div.append(input);
@@ -164,7 +170,8 @@
           status.textContent = "Все правильно";
         } else {
           check_div.style.backgroundColor = "red";
-          status.textContent = "Неправильный формат года";
+          status.textContent =
+            "Неправильный формат года (с 2000 по текущий год)";
         }
       } else if (checkNum(input.value) == true) {
         check_div.style.backgroundColor = "red";
@@ -234,6 +241,7 @@
           faculty: newArray[5].value,
         });
         localStorage.setItem("array", JSON.stringify(oldArray));
+        alert("Ученик добавлен");
         location.reload();
       }
     });
@@ -245,6 +253,10 @@
 
   function checkRussian(text) {
     return /[а-я]/i.test(text);
+  }
+
+  function checkAlpha(text) {
+    return /\d/.test(text);
   }
 
   function checkYears(year) {
@@ -272,7 +284,7 @@
   }
 
   function checkStartyear(year) {
-    if (parseInt(year) >= 2020 && parseInt(year) <= new Date().getFullYear()) {
+    if (parseInt(year) >= 2000 && parseInt(year) <= new Date().getFullYear()) {
       return true;
     } else {
       return false;

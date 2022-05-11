@@ -1,7 +1,7 @@
 (function () {
   const array = JSON.parse(localStorage.getItem("array")) || [];
 
-  if (array != []) {
+  if (array != "") {
     createTable(array);
   } else {
     alert("Учеников нет!");
@@ -77,7 +77,9 @@
             new Date(array[i][j]).getDate()
           );
           if (bty > today) {
-            p.textContent = `${array[i][j]} (${
+            p.textContent = `${new Date(array[i][j]).getDate()} ${new Date(
+              array[i][j]
+            ).getMonth()} ${new Date(array[i][j]).getFullYear()} (${
               today.getFullYear() - new Date(array[i][j]).getFullYear() - 1
             })`;
           } else {
