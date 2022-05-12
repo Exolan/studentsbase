@@ -17,6 +17,7 @@
     const check_div = document.createElement("div");
     check_div.className = "check";
     const status = document.createElement("p");
+    status.className = "text_check";
 
     input.addEventListener("input", () => {
       if (input.value === "") {
@@ -51,6 +52,7 @@
     const check_div = document.createElement("div");
     check_div.className = "check";
     const status = document.createElement("p");
+    status.className = "text_check";
 
     input.addEventListener("input", () => {
       if (input.value === "") {
@@ -85,6 +87,7 @@
     const check_div = document.createElement("div");
     check_div.className = "check";
     const status = document.createElement("p");
+    status.className = "text_check";
 
     input.addEventListener("input", () => {
       if (input.value === "") {
@@ -120,27 +123,18 @@
     const check_div = document.createElement("div");
     check_div.className = "check";
     const status = document.createElement("p");
+    status.className = "text_check";
 
-    // input.addEventListener("input", () => {
-    //   if (input.value === "") {
-    //     check_div.style.backgroundColor = "transparent";
-    //     status.textContent = "";
-    //   } else if (checkNum(input.value) == false && input.value != "") {
-    //     if (
-    //       input.value.length == 8 &&
-    //       checkYears(maskDate(input.value)) == true
-    //     ) {
-    //       check_div.style.backgroundColor = "green";
-    //       status.textContent = "Все правильно";
-    //     } else {
-    //       check_div.style.backgroundColor = "red";
-    //       status.textContent = "Неправильный формат даты";
-    //     }
-    //   } else if (checkNum(input.value) == true) {
-    //     check_div.style.backgroundColor = "red";
-    //     status.textContent = "Введите цифры";
-    //   }
-    // });
+    input.addEventListener("input", () => {
+      if (input.value === "") {
+        check_div.style.backgroundColor = "transparent";
+        status.textContent = "";
+      } else {
+        check_div.style.backgroundColor = "green";
+        status.textContent = "Все правильно";
+        console.log(input.value);
+      }
+    });
 
     year_div.append(year_input);
     year_div.append(input);
@@ -159,6 +153,7 @@
     const check_div = document.createElement("div");
     check_div.className = "check";
     const status = document.createElement("p");
+    status.className = "text_check";
 
     input.addEventListener("input", () => {
       if (input.value === "") {
@@ -196,6 +191,7 @@
     const check_div = document.createElement("div");
     check_div.className = "check";
     const status = document.createElement("p");
+    status.className = "text_check";
 
     input.addEventListener("input", () => {
       if (input.value === "") {
@@ -221,12 +217,16 @@
 
     button.addEventListener("click", () => {
       const flags = document.querySelectorAll(".check");
+      const text = document.querySelectorAll(".text_check");
+      console.log(flags);
       let status = true;
-      for (let i of flags) {
-        if (i.style.backgroundColor != "green") {
+      for (let i = 0; i < flags.length; i++) {
+        if (flags[i].style.backgroundColor == "") {
           status = false;
-          alert("Поля неправильно заполнены");
-          break;
+          flags[i].style.backgroundColor = "red";
+          text[i].innerText = "Поле не заполнено";
+        } else if (flags[i].style.backgroundColor == "red") {
+          status = false;
         }
       }
       if (status == true) {
@@ -236,7 +236,7 @@
           name: newArray[0].value,
           surname: newArray[1].value,
           lastname: newArray[2].value,
-          birthDate: new Date(maskDate(newArray[3].value)),
+          birthDate: new Date(newArray[3].value),
           startYear: newArray[4].value,
           faculty: newArray[5].value,
         });
@@ -259,13 +259,13 @@
     return /\d/.test(text);
   }
 
-  function checkYears(year) {
-    if (new Date(year) > new Date(1990, 1, 1) && new Date(year) < new Date()) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // function checkYears(year) {
+  //   if (new Date(year) > new Date(1990, 1, 1) && new Date(year) < new Date()) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   function checkNum(year) {
     return isNaN(Number(year));

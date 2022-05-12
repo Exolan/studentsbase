@@ -5,6 +5,7 @@ body {
 .conteiner {
   height: 100%;
   width: 100%;
+  justify-content: center;
 }
 
 .header {
@@ -88,6 +89,7 @@ body {
 
 /*                                      */
 .table_div {
+  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,4 +103,16 @@ th,
 td {
   padding: 10px 20px;
   border: 1px solid #000;
+}
+
+.filter_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 20px;
 }
